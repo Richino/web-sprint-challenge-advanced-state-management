@@ -1,9 +1,32 @@
+import { FETCH_DATA, ERROR_MESSAGE, ADD } from "../actions/index";
 
 export const initialState = {
-}
+	smurfs: [],
+	isLoading: false,
+	errorMessage: "",
+};
 
-const reducer = ()=>{
-}
+const reducer = (state = initialState, action) => {
+	switch (action.type) {
+		case FETCH_DATA:
+			return {
+				...state,
+				smurfs: action.payload,
+			};
+		case ADD:
+			return {
+				...state,
+				smurfs: [...state.smurfs, action.payload],
+			};
+		case ERROR_MESSAGE:
+			return {
+				...state,
+				errorMessage: action.payload,
+			};
+		default:
+			return state;
+	}
+};
 
 export default reducer;
 
